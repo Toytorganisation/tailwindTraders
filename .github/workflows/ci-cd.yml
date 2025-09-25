@@ -24,9 +24,9 @@ jobs:
         dotnet-version: '5.0.x'
 
     - name: Setup Node
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v3
       with:
-        node-version: 10.16.3    
+        node-version: 18.X    
 
     - name: Install dependencies in client app
       working-directory: TailwindTraders.Website/Source/Tailwind.Traders.Web/ClientApp
