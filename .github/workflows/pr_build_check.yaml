@@ -5,6 +5,7 @@ on:
     branches: [ main ]
     paths:
       - 'TailwindTraders.Website/**'
+
 jobs:
   CI:
     runs-on: ubuntu-latest
@@ -15,7 +16,12 @@ jobs:
     - name: Setup Node
       uses: actions/setup-node@v3
       with:
-        node-version: 18.X    
+        node-version: 18.x
+
+    - name: Install build dependencies for node-sass
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y python-is-python2 g++ make
 
     - name: Install dependencies in client app
       working-directory: TailwindTraders.Website/Source/Tailwind.Traders.Web/ClientApp
