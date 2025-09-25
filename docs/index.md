@@ -1,5 +1,5 @@
 # Tailwind Traders Website
-Bonjours 
+
 ![Tailwind Traders Website](Website.png)
 All changes in git repo, so if branch protected, you need reviews!
 
