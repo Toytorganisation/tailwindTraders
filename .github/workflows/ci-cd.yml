@@ -28,6 +28,13 @@ jobs:
       with:
         node-version: 18.X    
 
+        
+    - name: Install build dependencies for node-sass
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y python-is-python2 g++ make
+
+
     - name: Install dependencies in client app
       working-directory: TailwindTraders.Website/Source/Tailwind.Traders.Web/ClientApp
       run: npm install
