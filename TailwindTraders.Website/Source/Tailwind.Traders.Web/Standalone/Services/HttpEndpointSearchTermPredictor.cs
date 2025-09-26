@@ -14,7 +14,7 @@ using Azure.Storage.Blobs.Specialized;
 
 namespace Tailwind.Traders.Web.Standalone.Services
 {
-    public class HttpEndpointSearchTermPredictor : IImageSearchTermPredictor
+   TermPredictor : IImageSearchTermPredictor
     {
         private readonly ILogger<HttpEndpointSearchTermPredictor> logger;
         private readonly string imageEndpoint;
@@ -36,9 +36,9 @@ namespace Tailwind.Traders.Web.Standalone.Services
 
         async Task<string> IImageSearchTermPredictor.PredictSearchTerm(Stream imageStream)
         {
-            var eventId = new EventId();
-            IImageFormat imageFormat;
-            var image = Image.Load(imageStream, out imageFormat);
+           Async(imageStream);
+            var image = imageWithFormat.Image;
+            var imageFormat = imageWithFormat.Format;
 
             // resize image constraining it to 500px in any dimension
             var resizedImage = image.Clone(
@@ -53,7 +53,7 @@ namespace Tailwind.Traders.Web.Standalone.Services
             var cloudBlockBlob = blobContainerClient.GetBlockBlobClient(filename);
             var blobStream = new MemoryStream();
             resizedImage.SaveAsJpeg(blobStream);
-            blobStream.Seek(0,SeekOrigin.Begin);
+            blobStream.Seek(0, SeekOrigin.Begin);
             await cloudBlockBlob.UploadAsync(blobStream);
 
             logger.LogInformation(eventId, "Image uploaded to {StorageUrl}", cloudBlockBlob.Uri.AbsoluteUri);
@@ -71,7 +71,7 @@ namespace Tailwind.Traders.Web.Standalone.Services
             logger.LogInformation(eventId, "Result prediction: {prediction} with confidence - hammer: {hammerconf}, wrench: {wrenchconf}", 
                 resultObject.prediction, resultObject.scores.hammer, resultObject.scores.wrench);
 
-            return await Task.FromResult(resultObject.prediction);;
+            return await Task.FromResult(resultObject.prediction);
         }
     }
 
