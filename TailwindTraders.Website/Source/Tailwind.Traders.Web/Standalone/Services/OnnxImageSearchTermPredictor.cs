@@ -8,7 +8,6 @@ using Microsoft.ML.OnnxRuntime.Tensors;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Advanced;
 using SixLabors.ImageSharp.Processing;
-using SixLabors.Primitives;
 
 namespace Tailwind.Traders.Web.Standalone.Services
 {
@@ -41,7 +40,7 @@ namespace Tailwind.Traders.Web.Standalone.Services
             {
                 image.Mutate(ctx => ctx.Resize(new ResizeOptions
                 {
-                    Size = new Size(224, 224),
+                    Size = new SixLabors.ImageSharp.Size(224, 224),
                     Mode = ResizeMode.Stretch
                 }));
                 for (var x = 0; x < image.Width; x++)
