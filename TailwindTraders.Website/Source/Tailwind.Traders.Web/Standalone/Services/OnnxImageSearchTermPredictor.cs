@@ -8,7 +8,6 @@ using Microsoft.ML.OnnxRuntime.Tensors;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Advanced;
 using SixLabors.ImageSharp.Processing;
-using SixLabors.Primitives;
 
 namespace Tailwind.Traders.Web.Standalone.Services
 {
@@ -21,7 +20,6 @@ namespace Tailwind.Traders.Web.Standalone.Services
         {
             this.logger = logger;
             var filePath = Path.Combine(environment.ContentRootPath, "Standalone/OnnxModels/products.onnx");
-            //var file = System.IO.File.ReadAllBytes(filePath);
             session = new InferenceSession(filePath);
         }
 
@@ -44,6 +42,7 @@ namespace Tailwind.Traders.Web.Standalone.Services
                     Size = new Size(224, 224),
                     Mode = ResizeMode.Stretch
                 }));
+
                 for (var x = 0; x < image.Width; x++)
                 {
                     for (var y = 0; y < image.Height; y++)
