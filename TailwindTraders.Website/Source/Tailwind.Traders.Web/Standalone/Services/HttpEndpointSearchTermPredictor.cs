@@ -11,7 +11,6 @@ using System.Runtime.Serialization;
 using Microsoft.Extensions.Logging;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Specialized;
-using SixLabors.Primitives;
 
 namespace Tailwind.Traders.Web.Standalone.Services
 {
@@ -44,7 +43,7 @@ namespace Tailwind.Traders.Web.Standalone.Services
             // resize image constraining it to 500px in any dimension
             var resizedImage = image.Clone(
                 ctx => ctx.Resize(new ResizeOptions {
-                    Size = new Size(500,500),
+                    Size = new SixLabors.ImageSharp.Size(500, 500),
                     Mode = ResizeMode.Max
                 }));
             
